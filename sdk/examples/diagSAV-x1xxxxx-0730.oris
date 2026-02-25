@@ -1,0 +1,144 @@
+<!-- parametre SC: changer champs OS_Bilan  
+
+ --!>
+
+=
+
+fwpa(="datef="&fdat(dd/mm/yyyy))
+&fwpa(="datei="&fdat(dd/mm/yyyy,=-7))
+&fwpa(="yyyy="&fdat(yyyy))
+&fwpa(="chrono="25A005)
+&fwpa(="ademail=swannwilliame@gmail.com, jessica.botto@osmose06.com")
+&fwpa(="ademail2=jessica.botto@osmose06.com")
+
+&
+fwpa(
+	=ftxt(tempspasse=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/Gestion/Devis_gestion.ini?
+		reqtype=txt
+		&tri=23
+		&fils0=inc&fil0=25A005
+		&reqmask="- "$_18_$" (Heure)")
+	)
+)
+
+&
+fwpa(
+	=ftxt(tempsplanning=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/planning_gestion.ini?
+		reqtype=num
+		&fils3=inc&fil3=25A005
+		&fils7=>?<&fir7=fdat(dd/mm/yyyy)&fil7=)&fpar("datei")&ftxt(
+		&reqmask=_11_)
+	)&" (Heure)"
+)
+
+
+&
+fwpa(
+	=ftxt(depenses=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/Gestion/Devis_gestion.ini?
+		reqtype=txt
+		&tri=23
+		&fils0=inc&fil0=25A005
+		&reqmask="- "$_17_$" (Euros)")
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ticketencours=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/Gestion/SAV_gestion.ini?
+		reqtype=txt
+		&tri=5
+		&fils4==&fil4=0
+		&reqmask="- "$_17_$" / "$_5_$" / "$_0_$" / "$_2_$" / "$_22_$" (FO) / "$_21_$" (Garantie)")
+	)
+)
+
+&
+fwpa(
+	=ftxt(nouveauxticket=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/Gestion/SAV_gestion.ini?
+		reqtype=txt
+		&tri=5&trireverse=true
+		&fils5=>?<&fir5=01/01/2500&fil5=)&fpar("datei")&ftxt(
+		&reqmask="- "$_17_$" / "$_5_$" / "$_0_$" / "$_2_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ticketferme=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/Gestion/SAV_gestion.ini?
+		reqtype=txt
+		&tri=5&trireverse=true
+		&fils8=>?<&fir8=fdat(dd/mm/yyyy)&fil8=)&fpar("datei")&ftxt(
+		&reqmask="- "$_17_$" / "$_5_$" / "$_0_$" / "$_2_$" / "$_22_$" (FO) / "$_21_$" (Garantie) / "$_8_$)
+	)
+)
+
+
+
+<!-- ------------------- Email ------------------- --!>
+
+
+&
+fwpa(
+	=ftxt(email1=)&
+		ftxt(Bonjour,
+		<br><br>
+		Voici une synthèse hebdomadaire du SAV BU-Product :
+		<br><br>)
+
+		&ftxt(<b>Temps total passé : </b><br>)
+		&fpar("tempspasse")
+
+		&ftxt(<hr><b>Temps passé sur le planning du </b>)
+		&ftxt(<b>)&fpar("datei")&ftxt(</b>)
+		&ftxt(<b> au </b>)
+		&ftxt(<b>)&fdat(dd/mm/yyyy)&ftxt(</b>)
+		&ftxt(<b> : </b><br>)
+		&fpar("tempsplanning")
+
+		&ftxt(<hr><b>Dépenses totales : </b><br>)
+		&fpar("depenses")
+
+		&ftxt(<hr><b>Ticket en cours : </b><br>)
+		&fpar("ticketencours")
+
+		&ftxt(<hr><b>Nouveaux ticket : </b><br>)
+		&fpar("nouveauxticket")
+
+		&ftxt(<hr><b>Ticket fermé : </b><br>)
+		&fpar("ticketferme")
+		
+		&"<br><br>"
+		
+
+		
+)
+
+&
+fwpa(
+	=ftxt(email2=)&
+		ftxt()
+)
+
+
+
+&
+fchu(65,femail(
+	=fpar("ademail"),,=fpar("ademail2"),
+	="ORIS -> Synthese hebdomadaire SAV BU-Product",
+
+	=fpar("email1")&fpar("email2")
+))
+

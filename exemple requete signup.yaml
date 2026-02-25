@@ -1,0 +1,34 @@
+{
+  firstname: S,
+  lastname: S,
+  birth_date: 08/02/2004,
+  gender: Male,
+  phone: +33664283890,
+  address: S,
+  additional_address: S,
+  postal_code: 06440,
+  city: S,
+  birth_place: É,
+  nationality: E,
+  cnaps_number: 423423423423,
+  sst_expiration_date: 32/42/3432,
+  social_security_number: 324234324242343,
+  id_card: https://example.com/identity_card.jpg,
+  sst_file: https://example.com/sst_file.pdf,
+  vital_card_url: https://example.com/vital_card.jpg,
+  profile_picture: https://example.com/profile_picture.jpg
+}
+
+{
+  agent_id: 123456789,
+  agreements_ids: "1, 3, 5",
+  file_url: https://example.com/file.pdf,
+  expiration : 32/42/2026,
+}
+
+{
+  agent_id: 123456789,
+  agreements_ids: "15",
+  file_url: https://example.com/file.pdf,
+  expiration : 32/42/2027,
+}

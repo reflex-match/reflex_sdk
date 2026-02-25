@@ -1,0 +1,5 @@
+{
+    "type": "read",
+    "base": "type_mission",
+    "fields":"*"
+}

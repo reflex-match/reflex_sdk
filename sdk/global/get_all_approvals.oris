@@ -1,0 +1,5 @@
+=fsdk_read(
+doc_reflex/1_data/bd/agreement_gestion.ini
+,0;1;2;3
+,json=true
+)

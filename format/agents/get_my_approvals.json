@@ -1,0 +1,12 @@
+{
+    "type": "read",
+    "base": "agent_agreement",
+    "field": [
+        "agent_id",
+        "agreements_ids",
+        "expiration"
+    ],
+    "filters": {
+        "agent_id": "&id"
+    }
+}

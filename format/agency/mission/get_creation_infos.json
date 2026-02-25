@@ -1,0 +1,27 @@
+{
+    "operations": [
+        {
+            "type": "read",
+            "base": "mission_service",
+            "fields": "*"
+        },
+        {
+            "type": "read",
+            "base": "type_mission",
+            "fields": "*"
+        },
+        {
+            "type": "read",
+            "base": "agreement",
+            "fields": "*"
+        },
+        {
+            "type": "read",
+            "base": "user_agence",
+            "fields": "*",
+            "filters": {
+                "uid": "&id"
+            }
+        }
+    ]
+}

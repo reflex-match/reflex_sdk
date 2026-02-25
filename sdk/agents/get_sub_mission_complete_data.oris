@@ -1,0 +1,58 @@
+&
+fwpa(
+    =ftxt(mission_id=)&
+    fsdk_param(
+    doc_reflex/1_data/bd/sub_missions_gestion.ini
+    ,txt
+    ,_5_
+    ,="fils0==&fil0="$fpar("sub_mission_id")
+    )
+)
+
+&
+fwpa(
+    =ftxt(agency_id=)&
+    fsdk_param(
+    doc_reflex/1_data/bd/missions_gestion.ini
+    ,txt
+    ,_2_
+    ,="fils0==&fil0="$fpar("mission_id")
+    )
+)
+
+&
+fwpa(
+    =ftxt(sub_mission_data=)&
+    fsdk_read(
+        doc_reflex/1_data/bd/sub_missions_gestion.ini
+        ,0;3;7;11;13
+        ,="json=true&fils0==&fil0="$fpar("sub_mission_id")
+    )
+)
+
+&
+fwpa(
+    =ftxt(mission_data=)&
+    fsdk_read(
+        doc_reflex/1_data/bd/missions_gestion.ini
+        ,0;1;2;3;4;5;6
+        ,="json=true&fils0==&fil0="$fpar("mission_id")
+    )
+)
+
+&
+fwpa(
+    =ftxt(agency_data=)&
+    fsdk_read(
+        doc_reflex/1_data/bd/agency_gestion.ini
+        ,0;1;9;12
+        ,="json=true&fils0==&fil0="$fpar("agency_id")
+    )
+)
+
+&fpar("sub_mission_data"
+)
+&fpar("mission_data"
+)
+&fpar("agency_data"
+)

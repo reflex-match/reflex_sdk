@@ -1,0 +1,5 @@
+fsdk_read(
+    doc_reflex/1_data/bd/sub_missions_gestion.ini
+    ,0;3;7;11;13
+    ,="json=true&fils0==&fil0="$fpar("related_sub_missions_id")
+)

@@ -1,0 +1,164 @@
+<!-- notes  
+ --!>
+
+=
+
+fwpa(="datef="&fdat(dd/mm/yyyy,=-1))
+&fwpa(="datei7="&fdat(dd/mm/yyyy,=-7))
+&fwpa(="datei30="&fdat(dd/mm/yyyy,=-28))
+
+&fwpa(="ca=AV")
+&fwpa(=ftxt(h7_av=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_av=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca3=LP")
+&fwpa(=ftxt(h7_lp=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca3)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_lp=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca3)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca4=SP")
+&fwpa(=ftxt(h7_sp=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca4)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_sp=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca4)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca5=TB")
+&fwpa(=ftxt(h7_tb=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca5)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_tb=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca5)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca6=OP")
+&fwpa(=ftxt(h7_op=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca6)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_op=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca6)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca7=MDG")
+&fwpa(=ftxt(h7_mdg=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca7)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_mdg=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca7)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca8=LB")
+&fwpa(=ftxt(h7_lb=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca8)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_lb=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca8)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca9=TBR")
+&fwpa(=ftxt(h7_tbr=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca9)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_tbr=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca9)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca10=MW")
+&fwpa(=ftxt(h7_mw=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca10)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_mw=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca10)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca11=RB")
+&fwpa(=ftxt(h7_rb=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca11)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_rb=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca11)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+&fwpa(="ca12=TT")
+&fwpa(=ftxt(h7_tt=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca12)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei7)$"&fir7="$fpar("datef"))))
+&fwpa(=ftxt(h30_tt=)&(freq(=ftxt(doc_enoleo/2_intranet/postit_global_gestion.ini?fil12=Finalise&fils12==&fil2=)$fpar(ca12)$ftxt(&fils2==&reqtype=num&reqmask=_11_&fils7=>?<&fil7=)$fpar(datei30)$"&fir7="$fpar("datef"))))
+
+
+&
+fwpa(
+	=ftxt(email1=)&
+		ftxt(Bonjour,
+		<br><br>
+		Voici une synthèse de la planification :
+		<hr><u>Pôle Automatisme :</u><br><br>
+		
+		<u>AV</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_av")!A0)&ftxt(</b><br>
+		<u>AV</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_av")!A0)&ftxt(</b><br><br>
+
+		<u>LP</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_lp")!A0)&ftxt(</b><br>
+		<u>LP</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_lp")!A0)&ftxt(</b><br><br>
+
+		<u>SP</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_sp")!A0)&ftxt(</b><br>
+		<u>SP</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_sp")!A0)&ftxt(</b><br><br>
+
+		<u>TB</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_tb")!A0)&ftxt(</b><br>
+		<u>TB</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_tb")!A0)&ftxt(</b><br><br>
+
+		<u>OP</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_op")!A0)&ftxt(</b><br>
+		<u>OP</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_op")!A0)&ftxt(</b><br><br>
+
+		<hr><u>Pôle GTC :</u><br><br>
+		
+		<u>MDG</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_mdg")!A0)&ftxt(</b><br>
+		<u>MDG</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_mdg")!A0)&ftxt(</b><br><br>
+
+		<u>LB</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_lb")!A0)&ftxt(</b><br>
+		<u>LB</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_lb")!A0)&ftxt(</b><br><br>
+
+		<u>MW</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_mw")!A0)&ftxt(</b><br>
+		<u>MW</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_mw")!A0)&ftxt(</b><br><br>
+
+		<u>RB</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_rb")!A0)&ftxt(</b><br>
+		<u>RB</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_rb")!A0)&ftxt(</b><br><br>
+
+		<hr><u>Pôle Maintenance :</u><br><br>
+		
+		<u>TBR</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_tbr")!A0)&ftxt(</b><br>
+		<u>TBR</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_tbr")!A0)&ftxt(</b><br><br>
+		
+		<u>TT</u> : semaine dernière : &nbsp;&nbsp;&nbsp;<b>)&(fpar("h7_tt")!A0)&ftxt(</b><br>
+		<u>TT</u> : mois dernier : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>)&(fpar("h30_tt")!A0)&ftxt(</b><br><br>
+
+		Cordialement,<br>Oris
+
+))
+
+&
+
+fchu(0,femail(
+olivier.pakula@enoleo.com;laurent.giordanengo@enoleo.com;corinne.torres@enoleo.com;matthieu.martins@enoleo.com;pascal.torres@enoleo.com,,,
+	="ORIS -> Enoleo : Synthese planification",
+	=fpar("email1")))
+
+&((fsi(fpar("h7_av")<39)+fsi(fpar("h30_av")<156))**
+(fchu(0,femail(
+anthony.vestri@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_lp")<39)+fsi(fpar("h30_lp")<156))**
+(fchu(0,femail(
+ludovic.pichon@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_sp")<39)+fsi(fpar("h30_sp")<156))**
+(fchu(0,femail(
+sylvain.palmerini@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_tb")<39)+fsi(fpar("h30_tb")<156))**
+(fchu(0,femail(
+thomas.belotti@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_op")<39)+fsi(fpar("h30_op")<156))**
+(fchu(0,femail(
+olivier.pakula@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_mdg")<39)+fsi(fpar("h30_mdg")<156))**
+(fchu(0,femail(
+mathis.degreef@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_lb")<39)+fsi(fpar("h30_lb")<156))**
+(fchu(0,femail(
+luca.balumicini@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_tbr")<39)+fsi(fpar("h30_tbr")<156))**
+(fchu(0,femail(
+tony.brunet@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_mw")<39)+fsi(fpar("h30_mw")<156))**
+(fchu(0,femail(
+mathieu.wattel@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_rb")<39)+fsi(fpar("h30_rb")<156))**
+(fchu(0,femail(
+renaud.baillet@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))
+
+&((fsi(fpar("h7_tt")<39)+fsi(fpar("h30_tt")<156))**
+(fchu(0,femail(
+tristan.tuffou@enoleo.com,,pascal.torres@enoleo.com,
+	="ORIS -> Enoleo : Synthese planification : probleme affectation des heures",))))

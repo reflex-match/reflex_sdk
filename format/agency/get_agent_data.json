@@ -1,0 +1,15 @@
+{
+    "type": "read",
+    "base": "agents",
+    "fields": [
+        "firstname",
+        "lastname",
+        "phone",
+        "profile_picture",
+        "address",
+        "gender",
+        "birth_date",
+        "rating",
+        "missions_count"
+    ]
+}

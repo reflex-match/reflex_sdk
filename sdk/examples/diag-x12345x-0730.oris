@@ -1,0 +1,314 @@
+<!-- parametre SC: changer champs OS_Bilan  
+
+ --!>
+
+=
+
+fwpa(="datef="&fdat(dd/mm/yyyy))
+&fwpa(="datei="&fdat(dd/mm/yyyy,=-1))
+&fwpa(="yyyy="&fdat(yyyy))
+&fwpa(="chrono="25A003)
+&fwpa(="ademail=swannwilliame@gmail.com, jessica.botto@osmose06.com")
+&fwpa(="ademail2=jessica.botto@osmose06.com")
+
+&
+fwpa(
+	=ftxt(dateofvide_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45&trireverse=true
+		&fils12=exc&fil12=.PF
+		&fils24==&fil24=(V)
+		&fils35==&fil35=(V)
+		&fils45==&fil45=(V)
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(dateofvide_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45&trireverse=true
+		&fils12=inc&fil12=.PF
+		&fils24==&fil24=(V)
+		&fils35==&fil35=(V)
+		&fils45==&fil45=(V)
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofnonplan_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45&trireverse=true
+		&fils12=exc&fil12=.PF
+		&fils45==&fil45=(V)
+		&fils24=>?<&fir24=01/01/2500&fil24=)$fdat(dd/mm/yyyy)$ftxt(
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" (Estimé) / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofnonplan_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45&trireverse=true
+		&fils12=inc&fil12=.PF
+		&fils24=>?<&fir24=01/01/2500&fil24=)$fdat(dd/mm/yyyy)$ftxt(
+		&fils56=inc&fil56=25A003
+		&fils45==&fil45=(V)
+		&reqmask="- "$_12_$" / "$_5_$" / "$_11_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" (Estimé) / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofplan_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=exc&fil12=.PF
+		&fils24=>?<&fir24=01/01/2500&fil24=)$fdat(dd/mm/yyyy)$ftxt(
+		&fils45=>?<&fir45=01/01/2500&fil45=)$fdat(dd/mm/yyyy)$ftxt(
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofplan_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=inc&fil12=.PF
+		&fils24=>?<&fir24=01/01/2500&fil24=)$fdat(dd/mm/yyyy)$ftxt(
+		&fils45=>?<&fir45=01/01/2500&fil45=)$fdat(dd/mm/yyyy)$ftxt(
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_11_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofretard_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=exc&fil12=.PF
+		&fils24=>?<&fir24=)&fpar("datei")&ftxt(&fil24=01/01/2000
+		&fils56=inc&fil56=25A003
+		&fils45==&fil45=(V)
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofretard_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=inc&fil12=.PF
+		&fils24=>?<&fir24=)&fpar("datei")&ftxt(&fil24=01/01/2000
+		&fils56=inc&fil56=25A003
+		&fils45==&fil45=(V)
+		&reqmask="- "$_12_$" / "$_5_$" / "$_11_$" / "$_13_$" (Unité) / "$_24_$" - "$_27_$" (Estimé) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofencours_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=exc&fil12=.PF
+		&fils45=>?<&fir45=fdat(dd/mm/yyyy)&fil45=01/01/2000
+		&fils35==&fil35=(V)
+		&fils56=inc&fil56=25A003
+		&fils29=<&fil29==_28_
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_45_$" - "$_46_$" (Planifié) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_30_$" (Vérif S stock) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofencoursdepass_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=exc&fil12=.PF
+		&fils45=>?<&fir45=fdat(dd/mm/yyyy)&fil45=01/01/2000
+		&fils35==&fil35=(V)
+		&fils56=inc&fil56=25A003
+		&fils28=<&fil28==_29_
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_45_$" - "$_46_$" (Planifié) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_30_$" (Vérif S stock) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofencours_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=inc&fil12=.PF
+		&fils45=>?<&fir45=fdat(dd/mm/yyyy)&fil45=01/01/2000
+		&fils35==&fil35=(V)
+		&fils56=inc&fil56=25A003
+		&fils29=<&fil29==_28_
+		&reqmask="- "$_12_$" / "$_5_$" / "$_11_$" / "$_13_$" (Unité) / "$_45_$" - "$_46_$" (Planifié) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_30_$" (Vérif S stock) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofencoursdepass_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=inc&fil12=.PF
+		&fils45=>?<&fir45=fdat(dd/mm/yyyy)&fil45=01/01/2000
+		&fils35==&fil35=(V)
+		&fils56=inc&fil56=25A003
+		&fils28=<&fil28==_29_
+		&reqmask="- "$_12_$" / "$_5_$" / "$_11_$" / "$_13_$" (Unité) / "$_45_$" - "$_46_$" (Planifié) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_30_$" (Vérif S stock) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofterm_sepf=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=exc&fil12=.PF
+		&fils46=>?<&fir46=fdat(dd/mm/yyyy)&fil46=01/01/2000
+		&fils35==&fil35=(nV)
+		&fils45==&fil45=(nV)
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_45_$" - "$_46_$" (Planifié) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_30_$" (Vérif S stock) / "$_35_$" (OF terminé) / "$_56_$)
+	)
+)
+
+&
+fwpa(
+	=ftxt(ofterm_prfi=)&
+	freq(<br>,
+		=ftxt(doc_osmose/2_intranet/os_prod_suivi_gestion.ini?
+		reqtype=txt
+		&tri=45
+		&fils12=inc&fil12=.PF
+		&fils46=>?<&fir46=fdat(dd/mm/yyyy)&fil46=01/01/2000
+		&fils35==&fil35=(nV)
+		&fils45==&fil45=(nV)
+		&fils56=inc&fil56=25A003
+		&reqmask="- "$_12_$" / "$_5_$" / "$_13_$" (Unité) / "$_45_$" - "$_46_$" (Planifié) / "$_26_$" / "$_28_$" (H target) / "$_29_$" (H réel) / "$_30_$" (Vérif S stock) / "$_35_$" (OF terminé) / "$_56_$)
+	)
+)
+
+
+
+
+<!-- ------------------- Email ------------------- --!>
+
+
+&
+fwpa(
+	=ftxt(email1=)&
+		ftxt(Bonjour,
+		<br><br>
+		Voici une synthèse journalière des ordres de fabrication :
+		<br><br>)
+
+		&ftxt(<b>SEPF :</b><br>)
+
+		&ftxt(<br>OF date non estimée :<br>)
+		&fpar("dateofvide_sepf")
+
+		&ftxt(<hr><br>OF non planifié :<br>)
+		&fpar("ofnonplan_sepf")
+
+		&ftxt(<hr><br>OF en retard et non planifié :<br>)
+		&fpar("ofretard_sepf")
+
+		&ftxt(<hr><br>OF planifié :<br>)
+		&fpar("ofplan_sepf")
+
+		&ftxt(<hr><br>OF en cours dans les temps :<br>)
+		&fpar("ofencours_sepf")
+
+		&ftxt(<hr><br>OF en cours avec dépassement des heures :<br>)
+		&fpar("ofencoursdepass_sepf")
+
+		&ftxt(<hr><br>OF terminés :<br>)
+		&fpar("ofterm_sepf")
+
+		&ftxt(<hr><hr><b>PRFI :</b><br>)
+
+		&ftxt(<br>OF date non estimée :<br>)
+		&fpar("dateofvide_prfi")
+
+		&ftxt(<hr><br>OF non planifié :<br>)
+		&fpar("ofnonplan_prfi")
+		
+		&ftxt(<hr><br>OF en retard et non planifié :<br>)
+		&fpar("ofretard_prfi")
+
+		&ftxt(<hr><br>OF planifié :<br>)
+		&fpar("ofplan_prfi")
+
+		&ftxt(<hr><br>OF en cours dans les temps :<br>)
+		&fpar("ofencours_prfi")
+
+		&ftxt(<hr><br>OF en cours avec dépassement des heures :<br>)
+		&fpar("ofencoursdepass_prfi")
+
+		&ftxt(<hr><br>OF terminés :<br>)
+		&fpar("ofterm_prfi")
+		
+		&"<br><br>"
+		
+
+		
+)
+
+&
+fwpa(
+	=ftxt(email2=)&
+		ftxt()
+)
+
+
+
+&
+
+fchu(65,femail(
+	=fpar("ademail"),,=fpar("ademail2"),
+	="ORIS -> Synthese journaliere des ordres de fabrication",
+
+	=fpar("email1")&fpar("email2")
+))
+

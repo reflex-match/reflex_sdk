@@ -1,0 +1,5 @@
+=fsdk_write(
+doc_reflex/1_data/bd/agents_gestion.ini
+,1;2;3;4;5;6;7;8;12;13;14;16;17;18;20
+,="json=true&mch1="$fpar("firstname")&"&mch2="$fpar("lastname")&"&mch4="$fpar("email")&"&mch3="$fpar("birth_date")&"&mch5="$fpar("gender")&"&mch14="$fpar("phone")&"&mch6="$fpar("address")&"&mch16="$fpar("birth_place")&"&mch18="$fpar("nationality")&"&mch8="$fpar("cnaps_number")&"&mch12="$fpar("sst_expiration_date")&"&mch20="$fpar("social_security_number")&"&mch17="$fpar("id_card")&"&mch13="$fpar("vital_card_url")&"&mch7="$fpar("profile_picture")&"&fils0==&fil0='id'"
+)

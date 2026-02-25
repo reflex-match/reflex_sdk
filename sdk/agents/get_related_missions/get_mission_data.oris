@@ -1,0 +1,5 @@
+fsdk_read(
+    doc_reflex/1_data/bd/missions_gestion.ini
+    ,0;1;2;3;4;5;6
+    ,="json=true&fils0==&fil0="$fpar("mission_id")
+)

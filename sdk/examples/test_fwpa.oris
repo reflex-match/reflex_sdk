@@ -1,0 +1,11 @@
+fsdk_read(
+doc_reflex/1_data/bd/agents_gestion.ini
+,5
+,="json=true&fils0==&fil0="$fpar("uid")
+)
+&
+fsdk_read(
+doc_reflex/1_data/bd/agents_gestion.ini
+,0;1;2;5
+,="json=true&fils5==&fil5="$fpar("gender")
+)

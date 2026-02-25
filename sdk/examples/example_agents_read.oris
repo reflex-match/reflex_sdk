@@ -1,0 +1,5 @@
+=fsdk_read(
+doc_reflex/1_data/bd/agents_gestion.ini
+,0;1;2
+,json=true&fils0==&fil0='id'
+)

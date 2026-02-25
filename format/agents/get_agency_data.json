@@ -1,0 +1,16 @@
+{
+    "type": "read",
+    "base": "agency",
+    "fields": [
+        "id",
+        "email",
+        "company_name",
+        "address",
+        "phone",
+        "profile_picture",
+        "rating"
+    ],
+    "filters": {
+        "id": "$agency_id"
+    }
+}

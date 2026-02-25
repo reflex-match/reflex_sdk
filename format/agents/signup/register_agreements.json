@@ -1,0 +1,10 @@
+{
+    "type": "new",
+    "base": "agent_agreement",
+    "fields": {
+        "agent_id": "&id",
+        "agreements_ids": "$agreements_ids",
+        "file_url": "$file_url",
+        "expiration": "$expiration"
+    }
+}

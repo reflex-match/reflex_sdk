@@ -1,0 +1,5 @@
+fsdk_read(
+    doc_reflex/1_data/bd/agency_gestion.ini
+    ,0;1;9;12
+    ,="json=true&fils0==&fil0="$fpar("agency_id")
+)

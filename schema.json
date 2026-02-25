@@ -1,0 +1,206 @@
+{
+    "user_agence": {
+        "path": "doc_reflex/1_data/bd/user_agence_gestion.ini",
+        "fields": [
+            "uid",
+            "name",
+            "access_level",
+            "agency_id",
+            "email"
+        ]
+    },
+    "outfits": {
+        "path": "doc_reflex/1_data/bd/outfits_gestion.ini",
+        "fields": [
+            "id",
+            "name"
+        ]
+    },
+    "review_agent": {
+        "path": "doc_reflex/1_data/bd/review_agent_gestion.ini",
+        "fields": [
+            "id",
+            "titre",
+            "agent_mission_id",
+            "global_rating",
+            "body",
+            "rating_1",
+            "rating_2",
+            "rating_3",
+            "rating_4",
+            "review_date",
+            "agent_id"
+        ]
+    },
+    "unavailability": {
+        "path": "doc_reflex/1_data/bd/unavailability_gestion.ini",
+        "fields": [
+            "id",
+            "start_date",
+            "end_date",
+            "agent_id"
+        ]
+    },
+    "agent_agreement": {
+        "path": "doc_reflex/1_data/bd/agent_agreement_gestion.ini",
+        "fields": [
+            "id",
+            "agent_id",
+            "agreements_ids",
+            "file_url",
+            "expiration",
+            "obtained_date",
+            "is_valid"
+        ]
+    },
+    "messages_gestion": {
+        "path": "doc_reflex/1_data/bd/messages_gestion.ini",
+        "fields": [
+            "id",
+            "body",
+            "date",
+            "sender_type",
+            "sender_id",
+            "mission_id"
+        ]
+    },
+    "missions": {
+        "path": "doc_reflex/1_data/bd/missions_gestion.ini",
+        "fields": [
+            "id",
+            "status",
+            "agency_id",
+            "mission_name",
+            "picture_url",
+            "description",
+            "address",
+            "city",
+            "postal_code"
+        ]
+    },
+    "mission_service": {
+        "path": "doc_reflex/1_data/bd/mission_service_gestion.ini",
+        "fields": [
+            "id",
+            "name"
+        ]
+    },
+    "type_mission": {
+        "path": "doc_reflex/1_data/bd/mission_type_gestion.ini",
+        "fields": [
+            "Id",
+            "name"
+        ]
+    },
+    "agents": {
+        "path": "doc_reflex/1_data/bd/agents_gestion.ini",
+        "fields": [
+            "uid",
+            "firstname",
+            "lastname",
+            "birth_date",
+            "email",
+            "gender",
+            "address",
+            "profile_picture",
+            "cnaps_number",
+            "preferences",
+            "description",
+            "missions_count",
+            "sst_expiration_date",
+            "vital_card_url",
+            "phone",
+            "rating",
+            "birth_place",
+            "id_card",
+            "nationality",
+            "rib",
+            "social_security_number"
+        ]
+    },
+    "sub_missions": {
+        "path": "doc_reflex/1_data/bd/sub_missions_gestion.ini",
+        "fields": [
+            "id",
+            "start_date",
+            "end_date",
+            "day_night",
+            "days_of_week",
+            "mission_id",
+            "number_of_agents",
+            "agent_type",
+            "zone",
+            "hourly_rate",
+            "mission_service_id",
+            "mission_type_id",
+            "outfits",
+            "name"
+        ]
+    },
+    "agency": {
+        "path": "doc_reflex/1_data/bd/agency_gestion.ini",
+        "fields": [
+            "id",
+            "company_name",
+            "address",
+            "siret",
+            "phone",
+            "email",
+            "validation_state",
+            "body_guard_agency",
+            "agency_size",
+            "rating",
+            "city",
+            "postal_code",
+            "profile_picture"
+        ]
+    },
+    "Agency_document": {
+        "path": "doc_reflex/1_data/bd/agency_document_gestion.ini",
+        "fields": [
+            "id",
+            "agency_id",
+            "name",
+            "file_url",
+            "expiration_date",
+            "obtained_date",
+            "is_valid"
+        ]
+    },
+    "review_agency": {
+        "path": "doc_reflex/1_data/bd/review_agency_gestion.ini",
+        "fields": [
+            "id",
+            "title",
+            "agent_mission_id",
+            "global_rating",
+            "body",
+            "rating_1",
+            "rating_2",
+            "rating_3",
+            "rating_4",
+            "review_date",
+            "agency_id"
+        ]
+    },
+    "agent_mission": {
+        "path": "doc_reflex/1_data/bd/agent_mission_gestion.ini",
+        "fields": [
+            "id",
+            "agent_id",
+            "sub_mission_id",
+            "state",
+            "working_day_start",
+            "working_day_end"
+        ]
+    },
+    "agreement": {
+        "path": "doc_reflex/1_data/bd/agreement_gestion.ini",
+        "fields": [
+            "id",
+            "name",
+            "validation_duration",
+            "fr"
+        ]
+    }
+}

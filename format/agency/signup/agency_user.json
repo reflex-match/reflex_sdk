@@ -1,0 +1,11 @@
+{
+  "type": "write",
+  "base": "user_agence",
+  "fields": {
+    "name": "$name",
+    "email": "$email"
+  },
+  "filters": {
+    "uid": "&id"
+  }
+}

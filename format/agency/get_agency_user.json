@@ -1,0 +1,15 @@
+{
+    "type":"read",
+    "base":"user_agence",
+    "fields":[
+        "uid",
+        "name",
+        "access_level", 
+        "agency_id",
+        "email"
+    ],
+
+    "filters":{
+        "uid":"&id"
+    }
+}

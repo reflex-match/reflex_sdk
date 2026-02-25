@@ -1,0 +1,20 @@
+{
+  "operations": [
+    {
+      "type": "read",
+      "base": "agents",
+      "fields": "*",
+      "filters": {
+        "uid": "&id"
+      }
+    },
+    {
+      "type": "read",
+      "base": "agent_agreement",
+      "fields": "*",
+      "filters": {
+        "agent_id": "&id"
+      }
+    }
+  ]
+}

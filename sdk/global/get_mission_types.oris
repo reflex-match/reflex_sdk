@@ -1,0 +1,5 @@
+=fsdk_read(
+doc_reflex/1_data/bd/mission_type_gestion.ini
+,0;1
+,json=true
+)

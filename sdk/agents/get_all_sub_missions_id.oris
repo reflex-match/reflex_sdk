@@ -1,0 +1,5 @@
+fsdk_read(
+    doc_reflex/1_data/bd/sub_missions_gestion.ini
+    ,0
+    ,="json=true"
+)

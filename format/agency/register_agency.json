@@ -1,0 +1,11 @@
+{
+    "type": "new",
+    "base": "agency",
+    "fields": {
+        "company_name": "$agency_name",
+        "siret": "$siret",
+        "phone": "$phone",
+        "address": "$address",
+        "email": "$email"
+    }
+}

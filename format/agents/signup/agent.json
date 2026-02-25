@@ -1,0 +1,24 @@
+{
+  "type": "write",
+  "base": "agents",
+  "fields": {
+    "firstname": "$firstname",
+    "lastname": "$lastname",
+    "email": "$email",
+    "birth_date": "$birth_date",
+    "gender": "$gender",
+    "phone": "$phone",
+    "address": "$address",
+    "birth_place": "$birth_place",
+    "nationality": "$nationality",
+    "cnaps_number": "$cnaps_number",
+    "sst_expiration_date": "$sst_expiration_date",
+    "social_security_number": "$social_security_number",
+    "id_card": "$id_card",
+    "vital_card_url": "$vital_card_url",
+    "profile_picture": "$profile_picture"
+  },
+  "filters": {
+    "uid": "&id"
+  }
+}

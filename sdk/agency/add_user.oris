@@ -1,0 +1,15 @@
+=
+fwpa(
+	=ftxt(get_agency_id=)&
+	fsdk_read(
+        doc_reflex/1_data/bd/user_agence_gestion.ini
+        ,3
+        ,="json=true&fils0==&fil0='id'"
+    )
+)
+&
+=fsdk_write(
+doc_reflex/1_data/bd/user_agence_gestion.ini
+,2;3
+,="json=true&mch3="$fpar("get_agency_id")&"&mch2="$fpar("access_level")&"&fils0==&fil0="$fpar("uid")
+)

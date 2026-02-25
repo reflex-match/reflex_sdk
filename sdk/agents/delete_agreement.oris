@@ -1,0 +1,4 @@
+=fsdk_delete(
+doc_reflex/1_data/bd/agent_agreement_gestion.ini
+,="fils1==&fil1='id'&fils0==&fil0="$fpar("agent_agreement_id")&"&"
+)

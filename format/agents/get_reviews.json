@@ -1,0 +1,8 @@
+{
+    "type": "read",
+    "base": "review_agent",
+    "field": "*",
+    "filters": {
+        "agent_id": "&id"
+    }
+}

@@ -1,0 +1,5 @@
+=fsdk_write(
+doc_reflex/1_data/bd/user_agence_gestion.ini
+,1;4
+,="json=true&mch1="$fpar("name")&"&mch4="$fpar("email")&"&fils0==&fil0='id'"
+)

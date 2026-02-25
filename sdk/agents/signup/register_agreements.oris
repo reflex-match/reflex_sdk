@@ -1,0 +1,5 @@
+=fsdk_new(
+doc_reflex/1_data/bd/agent_agreement_gestion.ini
+,1;2;3;4;6
+,="json=true&mch1='id'&mch2="$fpar("agreements_ids")&"&mch3="$fpar("file_url")&"&mch4="$fpar("expiration")&"&mch6=2&"
+)

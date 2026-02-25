@@ -1,0 +1,12 @@
+=
+fsdk_read(
+doc_reflex/1_data/bd/agent_mission_gestion.ini
+,0;1;2;3;4;5
+,="json=true&fils0==&fil0="$fpar("agent_mission_id")
+)
+&
+fsdk_read(
+doc_reflex/1_data/bd/review_agency_gestion.ini
+,0;1;2;3;4;5;6;7;8;9;10
+,="json=true&fils2==&fil2="$fpar("agent_mission_id")
+)

@@ -1,0 +1,757 @@
+<!-- parametre SC: changer champs OS_Bilan  
+ --!>
+
+=
+
+fwpa(="datef="&fdat(dd/mm/yyyy))
+&fwpa(="datei="&fdat(dd/mm/yyyy,=-6))
+&fwpa(="yyyy="&fdat(yyyy))
+&fwpa(="ca1=SC")
+&fwpa(="ca1_nom=Sylvain CHEYREZI")
+&fwpa(="ca2=SH")
+&fwpa(="ca2_nom=Stéphane HOAREAU")
+&fwpa(="ca3=XS")
+&fwpa(="ca3_nom=Xavier SEBAN")
+&fwpa(="ca4=LPU")
+&fwpa(="ca4_nom=Laurent PUPAT")
+&fwpa(="ca5=GL")
+&fwpa(="ca5_nom=Ghislain LANOS")
+&fwpa(="ca6=WT")
+&fwpa(="ca6_nom=Wilson TOUSSIN")
+&fwpa(="ademail=jessica.botto@osmose06.com")
+&fwpa(="ademail2=jessica.botto@osmose06.com")
+
+
+
+<!-- ------------------- Orphelins ------------------- --!>
+
+&
+fwpa(
+	=ftxt(orphelins=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=1
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9==&fil9=(V)
+		&fils2==&fil2=ZZ)
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_23_$"</b>)")
+	)
+)
+
+
+<!-- ------------------- CA1 ------------------- --!>
+
+&fwpa(
+	=ftxt(ca1_cafact=)&
+	(-freq(
+		=ftxt(doc_osmose/1_coordination/gestion/facturation_gestion.ini?fil27=Regie$$CM&fils27=exc&fil26=)
+		$fpar("ca1")
+		$ftxt(&fils26==&glob=yes&reqtype=num&reqmask=_5_&fils2=>?<&fil2=)
+		$fpar(datei)
+		$"&fir2="
+		$fpar("datef")
+	))
+)
+
+&
+fwpa(
+	=ftxt(ca1_devischiffreca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils2==&fil2=)&fpar("ca1")
+		&ftxt(&fils9=>?<&fil9=)&fpar(datei)&"&fir9="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca1_deviscdeca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils13==&fil13=)&fpar("ca1")
+		&ftxt(&fils10=>?<&fil10=)&fpar(datei)&"&fir10="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca1_caencours=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca1")
+		&ftxt(&reqmask=_51_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca1_chantier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=51
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca1")
+		&ftxt(&fil-1=0
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" ("$_51_$")")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca1_aetudier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=1
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9==&fil9=(V)
+		&fils2==&fil2=)&fpar("ca1")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_23_$"</b>)")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca1_arelancer=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca1")
+		&ftxt(&fils24=<=&fil24=)&fdat(dd/mm/yyyy)
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_24_$"</b>) - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca1_arelancervide=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca1")
+		&ftxt(&fils24==&fil24=(V)
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca1_avenir=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils14==&fil14=(nV)
+		&fils2==&fil2=)&fpar("ca1")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Prev <b>"$_14_$"</b>)")
+	)
+)
+
+
+
+
+
+<!-- ------------------- CA2 ------------------- --!>
+
+&fwpa(
+	=ftxt(ca2_cafact=)&
+	(-freq(
+		=ftxt(doc_osmose/1_coordination/gestion/facturation_gestion.ini?fil27=Regie$$CM&fils27=exc&fil26=)
+		$fpar("ca2")
+		$ftxt(&fils26==&glob=yes&reqtype=num&reqmask=_5_&fils2=>?<&fil2=)
+		$fpar(datei)
+		$"&fir2="
+		$fpar("datef")
+	))
+)
+
+&
+fwpa(
+	=ftxt(ca2_devischiffreca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils2==&fil2=)&fpar("ca2")
+		&ftxt(&fils9=>?<&fil9=)&fpar(datei)&"&fir9="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca2_deviscdeca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils13==&fil13=)&fpar("ca2")
+		&ftxt(&fils10=>?<&fil10=)&fpar(datei)&"&fir10="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca2_caencours=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca2")
+		&ftxt(&reqmask=_51_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca2_chantier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=51
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca2")
+		&ftxt(&fil-1=0
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" ("$_51_$")")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca2_aetudier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=1
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9==&fil9=(V)
+		&fils2==&fil2=)&fpar("ca2")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_23_$"</b>)")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca2_arelancer=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca2")
+		&ftxt(&fils24=<=&fil24=)&fdat(dd/mm/yyyy)
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_24_$"</b>) - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca2_arelancervide=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca2")
+		&ftxt(&fils24==&fil24=(V)
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca2_avenir=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils14==&fil14=(nV)
+		&fils2==&fil2=)&fpar("ca2")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Prev <b>"$_14_$"</b>)")
+	)
+)
+
+
+
+
+<!-- ------------------- CA4 ------------------- --!>
+
+&fwpa(
+	=ftxt(ca4_cafact=)&
+	(-freq(
+		=ftxt(doc_osmose/1_coordination/gestion/facturation_gestion.ini?fil27=Regie$$CM&fils27=exc&fil26=)
+		$fpar("ca4")
+		$ftxt(&fils26==&glob=yes&reqtype=num&reqmask=_5_&fils2=>?<&fil2=)
+		$fpar(datei)
+		$"&fir2="
+		$fpar("datef")
+	))
+)
+
+&
+fwpa(
+	=ftxt(ca4_devischiffreca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils2==&fil2=)&fpar("ca4")
+		&ftxt(&fils9=>?<&fil9=)&fpar(datei)&"&fir9="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca4_deviscdeca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils13==&fil13=)&fpar("ca4")
+		&ftxt(&fils10=>?<&fil10=)&fpar(datei)&"&fir10="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca4_caencours=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca4")
+		&ftxt(&reqmask=_51_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca4_chantier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=51
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca4")
+		&ftxt(&fil-1=0
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" ("$_51_$")")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca4_aetudier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=1
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9==&fil9=(V)
+		&fils2==&fil2=)&fpar("ca4")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_23_$"</b>)")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca4_arelancer=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca4")
+		&ftxt(&fils24=<=&fil24=)&fdat(dd/mm/yyyy)
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_24_$"</b>) - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca4_arelancervide=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca4")
+		&ftxt(&fils24==&fil24=(V)
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca4_avenir=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils14==&fil14=(nV)
+		&fils2==&fil2=)&fpar("ca4")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Prev <b>"$_14_$"</b>)")
+	)
+)
+
+
+
+
+
+<!-- ------------------- CA6 ------------------- --!>
+
+&fwpa(
+	=ftxt(ca6_cafact=)&
+	(-freq(
+		=ftxt(doc_osmose/1_coordination/gestion/facturation_gestion.ini?fil27=Regie$$CM&fils27=exc&fil26=)
+		$fpar("ca6")
+		$ftxt(&fils26==&glob=yes&reqtype=num&reqmask=_5_&fils2=>?<&fil2=)
+		$fpar(datei)
+		$"&fir2="
+		$fpar("datef")
+	))
+)
+
+&
+fwpa(
+	=ftxt(ca6_devischiffreca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils2==&fil2=)&fpar("ca6")
+		&ftxt(&fils9=>?<&fil9=)&fpar(datei)&"&fir9="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca6_deviscdeca=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils12=exc&fil12=Regie$$CM
+		&fils13==&fil13=)&fpar("ca6")
+		&ftxt(&fils10=>?<&fil10=)&fpar(datei)&"&fir10="&fpar("datef")
+		&ftxt(&reqmask=_4_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca6_caencours=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca6")
+		&ftxt(&reqmask=_51_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca6_chantier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=51
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils13==&fil13=)&fpar("ca6")
+		&ftxt(&fil-1=0
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" ("$_51_$")")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca6_aetudier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=1
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9==&fil9=(V)
+		&fils2==&fil2=)&fpar("ca6")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_23_$"</b>)")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca6_arelancer=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca6")
+		&ftxt(&fils24=<=&fil24=)&fdat(dd/mm/yyyy)
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Maxi <b>"$_24_$"</b>) - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca6_arelancervide=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils9=<>&fil9=(V)
+		&fils2==&fil2=)&fpar("ca6")
+		&ftxt(&fils24==&fil24=(V)
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" - <b>"$_4_$"</b>")
+	)
+)
+
+&
+fwpa(
+	=ftxt(ca6_avenir=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt
+		&fils8==&fil8=??
+		&fil-1=0
+		&fils14==&fil14=(nV)
+		&fils2==&fil2=)&fpar("ca6")
+		&ftxt(&reqmask="- "$_0_$" "$_1_$" : "$_3_$" (Prev <b>"$_14_$"</b>)")
+	)
+)
+
+
+
+
+
+<!-- ------------------- CA5 ------------------- --!>
+
+
+&
+fwpa(
+	=ftxt(ca5_caencours=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils31==&fil31=)&fpar("ca5")
+		&ftxt(&reqmask=_51_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca5_chantier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=51
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils31==&fil31=)&fpar("ca5")
+		&ftxt(&fil-1=0
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" ("$_51_$")")
+	)
+)
+
+
+
+
+
+
+
+<!-- ------------------- CA3 ------------------- --!>
+
+
+&
+fwpa(
+	=ftxt(ca3_caencours=)&
+	freq(
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=num
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils31==&fil31=)&fpar("ca3")
+		&ftxt(&reqmask=_51_)
+	)
+)
+
+
+&
+fwpa(
+	=ftxt(ca3_chantier=)&
+	freq(<br>,
+		=ftxt(doc_osmose/1_coordination/gestion/devis_gestion.ini?
+		reqtype=txt&tri=51
+		&fils8==&fil8=Gagne
+		&fils12=exc&fil12=Regie$$CM
+		&fils21=<&fil21=100
+		&fils31==&fil31=)&fpar("ca3")
+		&ftxt(&fil-1=0
+		&reqmask="- "$_0_$" "$_1_$" : "$_3_$" ("$_51_$")")
+	)
+)
+
+
+
+
+
+
+
+<!-- ------------------- Email ------------------- --!>
+
+
+&
+fwpa(
+	=ftxt(email1=)&
+		ftxt(Bonjour,
+		<br><br>
+		Voici une synthèse hebdomadaire de l'activité de la BU_Os-Work (hors Maintenance et Régie) :
+		<br><br>
+		<u>)&fpar("ca1")&" / "&fpar("ca2")&" / "&fpar("ca4")&" / "&fpar("ca6")&"<br>"
+		&fpar("ca5")&ftxt(</u><br><br>)
+		&frou(fpar("ca1_caencours")/1000,0)&" / "
+		&frou(fpar("ca2_caencours")/1000,0)&" / "
+		&frou(fpar("ca4_caencours")/1000,0)&" / "
+		&frou(fpar("ca6_caencours")/1000,0)&
+		&" ke : CA en cours, dont "
+		&frou(fpar("ca5_caencours")/1000,0)" gérés par GL<br>"
+		&frou(fpar("ca1_cafact")/1000,0)&" / "
+		&frou(fpar("ca2_cafact")/1000,0)&" / "
+		&frou(fpar("ca4_cafact")/1000,0)&" / "
+		&frou(fpar("ca6_cafact")/1000,0)&" ke : CA facturé<br>"
+		&frou(fpar("ca1_devischiffreca")/1000,0)&" / "
+		&frou(fpar("ca2_devischiffreca")/1000,0)&" / "
+		&frou(fpar("ca4_devischiffreca")/1000,0)&" / "
+		&frou(fpar("ca6_devischiffreca")/1000,0)&" ke : CA chiffré<br>"
+		&frou(fpar("ca1_deviscdeca")/1000,0)&" / "
+		&frou(fpar("ca2_deviscdeca")/1000,0)&" / "
+		&frou(fpar("ca4_deviscdeca")/1000,0)&" / "
+		&frou(fpar("ca6_deviscdeca")/1000,0)&" ke : CA commandé<br><br><br>"
+
+		&ftxt(<hr><b>Dossiers Orphelins :</b><br>)
+		&fpar("orphelins")&"<br><br>"
+
+		&ftxt(<hr><b>)&fpar("ca1_nom")&ftxt( :</b><br>)
+		&ftxt(<br>Chantiers en cours :<br>)
+		&fpar("ca1_chantier")&"<br><br>"
+		&"A étudier :<br>"
+		&fpar("ca1_aetudier")&"<br><br>"
+		&"A relancer :<br>"
+		&fpar("ca1_arelancer")&"<br><br>"
+		&fpar("ca1_arelancervide")&"<br><br>"
+		&"Dossiers présentis :<br>"
+		&fpar("ca1_avenir")&"<br><br>"
+
+		&ftxt(<hr><b>)&fpar("ca2_nom")&ftxt( :</b><br>)
+		&ftxt(<br>Chantiers en cours :<br>)
+		&fpar("ca2_chantier")&"<br><br>"
+		&"A étudier :<br>"
+		&fpar("ca2_aetudier")&"<br><br>"
+		&"A relancer :<br>"
+		&fpar("ca2_arelancer")&"<br><br>"
+		&fpar("ca2_arelancervide")&"<br><br>"
+		&"Dossiers présentis :<br>"
+		&fpar("ca2_avenir")&"<br><br>"
+
+		&ftxt(<hr><b>)&fpar("ca4_nom")&ftxt( :</b><br>)
+		&ftxt(<br>Chantiers en cours :<br>)
+		&fpar("ca4_chantier")&"<br><br>"
+		&"A étudier :<br>"
+		&fpar("ca4_aetudier")&"<br><br>"
+		&"A relancer :<br>"
+		&fpar("ca4_arelancer")&"<br><br>"
+		&fpar("ca4_arelancervide")&"<br><br>"
+		&"Dossiers présentis :<br>"
+		&fpar("ca4_avenir")&"<br><br>"
+
+		&ftxt(<hr><b>)&fpar("ca6_nom")&ftxt( :</b><br>)
+		&ftxt(<br>Chantiers en cours :<br>)
+		&fpar("ca6_chantier")&"<br><br>"
+		&"A étudier :<br>"
+		&fpar("ca6_aetudier")&"<br><br>"
+		&"A relancer :<br>"
+		&fpar("ca6_arelancer")&"<br><br>"
+		&fpar("ca6_arelancervide")&"<br><br>"
+		&"Dossiers présentis :<br>"
+		&fpar("ca6_avenir")&"<br><br>"
+
+		&ftxt(<hr><b>)&fpar("ca5_nom")&ftxt( :</b><br>)
+		&ftxt(<br>Chantiers en cours :<br>)
+		&fpar("ca5_chantier")&"<br><br>"
+
+
+)
+
+&
+fwpa(
+	=ftxt(email2=)&
+		ftxt()
+)
+
+
+
+&
+
+fchu(62,femail(
+	=fpar("ademail"),,=fpar("ademail2"),
+	="ORIS -> Bilan BU_OS-Work "&" du "&fpar("datei")&" au "&fpar("datef"),
+
+	=fpar("email1")&fpar("email2")
+))
+

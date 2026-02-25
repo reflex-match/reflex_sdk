@@ -1,0 +1,5 @@
+fsdk_read(
+    doc_reflex/1_data/bd/agent_mission_gestion.ini
+    ,0;1;2;3;4;5
+    ,="json=true&fils1==&fil1='id'&fils3==&fil3="$fpar("state")
+)

@@ -1,0 +1,5 @@
+=fsdk_new(
+doc_reflex/1_data/bd/agency_gestion.ini
+,1;2;3;4;5
+,="json=true&mch1="$fpar("agency_name")&"&mch3="$fpar("siret")&"&mch4="$fpar("phone")&"&mch2="$fpar("address")&"&mch5="$fpar("email")&"&"
+)
