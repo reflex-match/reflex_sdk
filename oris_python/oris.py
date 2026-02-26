@@ -73,7 +73,7 @@ class Oris:
             "Accept": "application/json",
             "Content-Type": "application/json; charset=utf-8",
             "X-Oris-Basepath": f"{self._url}/{self._id}/{db_path}",
-            "Referer": f"{self._url}/{self._id}/doc_vegarw/4_Acces/Parametrage/"
+            "Referer": f"{self._url}/{self._id}"
         }
 
         response = requests.get(f"{self._url}/rest/{db}s?glob={archives}", headers=headers)
@@ -90,10 +90,10 @@ class Oris:
             "Accept": "application/json",
             "Content-Type": "application/json; charset=utf-8",
             "X-Oris-Basepath": f"{self._url}/{self._id}/{db_path}",
-            "Referer": f"{self._url}/{self._id}/doc_vegarw/4_Acces/Parametrage/"
+            "Referer": f"{self._url}/{self._id}/"
         }
 
-        response = requests.get(f"{self._url}/rest/{db}s?readparam=true", headers=headers)
+        response = requests.get(f"{self._url}/rest/{db}?readparam=true", headers=headers)
         if(response.status_code == 200):
             logger.info(f'{db} parameters received')
         else:

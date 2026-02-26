@@ -22,14 +22,7 @@ def main():
         logger.error(f"Connection failed! Error: {e}")
 
     bdds = [
-        ("Achats", "doc_osmose/1_coordination/Gestion/", "no"),
-        ("SAV", "doc_osmose/1_coordination/Gestion/", "no"),
-        ("Stock", "doc_osmose/1_Fabrication/Stock/Projet STOCK QUADRA/", "no"),
-        ("Devis", "doc_osmose/1_coordination/Gestion/", "no"),
-        ("Planning", "doc_osmose/2_intranet/", "no"),
-        ("Os_Prod_suivi", "doc_osmose/2_intranet/", "no"),
-        ("All_Equipements", "doc_oris/1_general/", "yes"),
-        ("All_Interventions", "doc_oris/1_general/", "yes"),
+        ("Agency_Document", "doc_reflex/1_data/sdk/agency", "yes")
     ]
 
     client = Oris(os.getenv('ORIS_URL'))
