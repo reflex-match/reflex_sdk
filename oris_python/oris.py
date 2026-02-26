@@ -37,7 +37,7 @@ def infer_formule_type(ser: pd.Series):
 class Oris:
     """Python client for Oris
     """
-    def __init__(self, url="https://www.x-oris.com", verify_ssl=True):
+    def __init__(self, url="https://reflex.link", verify_ssl=True):
         """Init Oris client
 
         Args:
