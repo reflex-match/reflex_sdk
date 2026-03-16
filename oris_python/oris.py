@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -90,11 +91,15 @@ class Oris:
             "Referer": f"{self._url}/{self._id}"
         }
 
-        response = requests.get(f"{self._url}/rest/{db}s?glob={archives}", headers=headers)
+        url = f"{self._url}/{self._id}/{db_path}?json=true"
+
+        response = requests.get(url, headers=headers)
         if response.status_code == 200:
             logger.info(f'{db} received')
         else:
             logger.error(f'Unable to get {db} at {db_path}')
+
+        print(response.text)
 
         return response.json().get(f'{db.lower()}s')
 
@@ -107,7 +112,7 @@ class Oris:
             "Referer": f"{self._url}/{self._id}"
         }
 
-        response = requests.get(f"{self._url}/rest/{db}?readparam=true", headers=headers)
+        response = requests.get(f"{self._url}/{self._id}/{db_path}?readparam=true&json=true", headers=headers)
         if response.status_code == 200:
             logger.info(f'{db} parameters received')
         else:

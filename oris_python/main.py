@@ -44,7 +44,7 @@ def main():
         return
 
     bdds = [
-        ("Agency_Document", "doc_reflex/1_data/bd/agency", "no")
+        ("Agency_Document", "doc_reflex/1_data/bd/agency_document_gestion.ini", "no")
     ]
 
     client = Oris(os.getenv("ORIS_URL"))
