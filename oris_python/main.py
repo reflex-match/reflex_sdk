@@ -42,9 +42,27 @@ def main():
     except Exception as e:
         logger.error(f"Connection failed! Error: {e}")
         return
+    
+    defult_path = "doc_reflex/1_data/bd/"
 
     bdds = [
-        ("Agency_Document", "doc_reflex/1_data/bd/agency_document_gestion.ini", "no")
+        ("Agency_Document", f"{defult_path}agency_document_gestion.ini", "no"),
+        ("messages", f"{defult_path}messages_gestion.ini", "no"),
+        ("agency", f"{defult_path}agency_gestion.ini", "no"),
+        ("agents", f"{defult_path}agents_gestion.ini", "no"),
+        ("agent_agreement", f"{defult_path}agent_agreement_gestion.ini", "no"),
+        ("agent_mission", f"{defult_path}agent_mission_gestion.ini", "no"),
+        ("agreement", f"{defult_path}agreement_gestion.ini", "no"),
+        ("missions", f"{defult_path}missions_gestion.ini", "no"),
+        ("mission_service", f"{defult_path}mission_service_gestion.ini", "no"),
+        ("mission_type", f"{defult_path}mission_type_gestion.ini", "no"),
+        ("outfits", f"{defult_path}outfits_gestion.ini", "no"),
+        ("review_agency", f"{defult_path}review_agency_gestion.ini", "no"),
+        ("review_agent", f"{defult_path}review_agent_gestion.ini", "no"),
+        ("sub_missions", f"{defult_path}sub_missions_gestion.ini", "no"),
+        ("unavailability", f"{defult_path}unavailability_gestion.ini", "no"),
+        ("user_agence", f"{defult_path}user_agence_gestion.ini", "no")
+
     ]
 
     client = Oris(os.getenv("ORIS_URL"))

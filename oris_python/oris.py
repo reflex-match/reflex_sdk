@@ -99,8 +99,6 @@ class Oris:
         else:
             logger.error(f'Unable to get {db} at {db_path}')
 
-        print(response.text)
-
         return response.json().get(f'{db.lower()}s')
 
     def get_db_params(self, db: str, db_path: str):
