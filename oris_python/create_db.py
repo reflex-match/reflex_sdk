@@ -70,7 +70,7 @@ def main():
 
     for bdd in bdds:
         df = client.get_db_as_dataframe(bdd[0], bdd[1], bdd[2])
-        df.to_sql(f"os_{bdd[0].lower()}", connection, if_exists="replace", index=False)
+        df.to_sql(f"os_{bdd[0].lower()}", con=connection, if_exists="replace", index=False)
 
     connection.close()
     logger.info("Process completed successfully.")

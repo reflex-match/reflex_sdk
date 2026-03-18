@@ -117,7 +117,8 @@ class Oris:
             logger.error(f'Unable to get {db} parameters at {db_path}')
 
         return response.json().get("champs")
-
+    
+    
     def get_db_as_dataframe(self, db: str, db_path: str, archives="no"):
         params = self.get_db_params(db, db_path)
 
@@ -128,7 +129,7 @@ class Oris:
         col_formule_idx = []
 
         for champ in params:
-            col_name = champ.get('name').lower().replace(" ", "_").replace("'", "") + '_' + champ.get('id')
+            col_name = champ.get('name').lower().replace(" ", "_").replace("'", "")
             col_idx[champ.get('idrest')] = col_name
             if champ.get("type") == "date":
                 col_date_idx.append(col_name)
