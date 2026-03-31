@@ -5,7 +5,7 @@ import warnings
 
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
-from sqlalchemy import create_engine, inspect, text
+from sqlalchemy import create_engine, inspect, text, bindparam
 from sqlalchemy.exc import SQLAlchemyError
 
 import create_db
@@ -47,7 +47,7 @@ def home():
             "GET /health",
             "GET /tables",
             "GET /table/<table_name>",
-            "GET /agent/missionpropositions/<agent_id>?limit=<limit>&offset=<offset>"
+            "GET /agent/missionpropositions/<agent_id>?limit=<limit>&offset=<offset>&mission_type_ids=<mission_type_ids>&outfit_ids=<outfit_ids>&zone=<zone>&hourly_rate=<hourly_rate>"
         ]
     })
 
@@ -135,98 +135,93 @@ def extraire_ids(valeur):
 
     return {int(v) for v in re.findall(r"\d+", valeur)}
 
-
 @app.route("/agent/missionpropositions/<agent_id>", methods=["GET"])
 def get_agent_mission_propositions(agent_id):
     limit = request.args.get("limit", default=10, type=int)
     offset = request.args.get("offset", default=0, type=int)
 
-    mission_type_id = request.args.get("mission_type_id", default=None, type=int)
-    outfit_id = request.args.get("outfit_id", default=None, type=int)
-    choice = request.args.get("choice", default=3, type=int)
+    mission_type_ids = request.args.getlist("mission_type_ids", type=int)
+    outfit_ids = request.args.getlist("outfit_ids", type=int)
+
+    zone = request.args.get("zone", default=3, type=int)
     hourly_rate = request.args.get("hourly_rate", default=None, type=float)
 
-    if choice not in [1, 2, 3]:
-        return jsonify({"error": "choice must be 1, 2 or 3"}), 400
+    if zone not in [1, 2, 3]:
+        return jsonify({"error": "zone must be 1, 2 or 3"}), 400
+
+    has_mission_type_filter = len(mission_type_ids) > 0
+    has_outfit_filter = len(outfit_ids) > 0
+    has_hourly_rate_filter = hourly_rate is not None
+
+    if not has_mission_type_filter:
+        mission_type_ids = [-1]
+
+    if not has_outfit_filter:
+        outfit_ids = [-1]
 
     try:
         with get_connection() as connection:
             requete_agent = text("""
-                SELECT
-                    a.uid,
-                    a.firstname,
-                    a.lastname,
-                    a.city_code,
-                    a.area_code
+                SELECT *
                 FROM os_agents a
                 WHERE a.uid = :agent_id
                 LIMIT 1
             """)
 
-            agent = connection.execute(requete_agent, {
+            result_agent = connection.execute(requete_agent, {
                 "agent_id": agent_id
-            }).mappings().first()
+            })
+
+            agent = result_agent.fetchone()
 
             if not agent:
                 return jsonify({"error": f"Agent {agent_id} not found"}), 404
 
-            requete_agreements = text("""
-                SELECT
-                    aa.agreements_ids
-                FROM os_agent_agreement aa
-                WHERE aa.agent_id = :agent_id
-                  AND aa.is_valid = true
-                  AND (
-                        aa.expiration IS NULL
-                        OR aa.expiration >= CURRENT_DATE
-                  )
+            agent_data = dict(agent._mapping)
+
+            if zone == 1:
+                zone_condition = "m.city_code = :agent_city_code"
+            elif zone == 2:
+                zone_condition = "m.area_code = :agent_area_code"
+            else:
+                zone_condition = "m.country_code = :agent_country_code"
+
+            requete = text(f"""
+                SELECT DISTINCT m.*
+                FROM os_sub_mission m
+                JOIN os_agent_agreement aa ON aa.agent_id = :agent_id AND aa.agreements_ids IN (
+                    SELECT m.mission_type_ids
+                )
+                LIMIT :limit OFFSET :offset
             """)
 
-            lignes_agreements = connection.execute(requete_agreements, {
-                "agent_id": agent_id
-            }).mappings().all()
-
-            agreements_agent = set()
-            for ligne in lignes_agreements:
-                agreements_agent |= extraire_ids(ligne["agreements_ids"])
-
-            requete_missions = text("""
-                SELECT * FROM os_missions
-            """)
-
-            resultats = connection.execute(requete_missions, {
-                "agent_city_code": agent["city_code"],
-                "agent_area_code": agent["area_code"],
-                "mission_type_id": mission_type_id,
-                "outfit_id": outfit_id,
-                "choice": choice,
-                "hourly_rate": hourly_rate,
+            params = {
+                "agent_id": agent_id,
+                "agent_city_code": agent_data.get("city_code"),
+                "agent_area_code": agent_data.get("area_code"),
+                "agent_country_code": agent_data.get("country_code"),
+                "mission_type_ids": mission_type_ids,
+                "outfit_ids": outfit_ids,
                 "limit": limit,
                 "offset": offset
-            })
+            }   
+            result = connection.execute(requete, params)
+            rows = [dict(row._mapping) for row in result]
+                
 
-            lignes = [dict(ligne._mapping) for ligne in resultats]
 
         return jsonify({
             "agent_id": agent_id,
-            "agent": {
-                "uid": agent["uid"],
-                "firstname": agent["firstname"],
-                "lastname": agent["lastname"],
-                "city_code": agent["city_code"],
-                "area_code": agent["area_code"],
-                "agreements_ids": sorted(list(agreements_agent))
-            },
             "filters": {
-                "mission_type_id": mission_type_id,
-                "outfit_id": outfit_id,
-                "choice": choice,
+                "mission_type_ids": mission_type_ids if has_mission_type_filter else [],
+                "outfit_ids": outfit_ids if has_outfit_filter else [],
+                "zone": zone,
                 "hourly_rate": hourly_rate,
                 "limit": limit,
                 "offset": offset
             },
-            "count": len(lignes),
-            "data": lignes
+            "count": len(rows),
+            "data": rows
         }), 200
 
     except SQLAlchemyError as e:
