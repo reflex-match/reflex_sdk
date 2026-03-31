@@ -61,6 +61,36 @@ def infer_formule_type(ser: pd.Series):
     except:
         logger.debug(f'Formule "{ser.name}" is string')
         return ser
+    
+def infer_list_type(ser: pd.Series):
+    def parse_value(val):
+        if pd.isna(val):
+            return []
+
+        val = str(val).strip()
+
+        if val == "":
+            return []
+
+        parts = [p.strip() for p in val.split(",") if p.strip() != ""]
+
+        result = []
+        for p in parts:
+            try:
+                result.append(int(p))
+            except:
+                try:
+                    result.append(float(p))
+                except:
+                    result.append(p)
+
+        return result
+
+    parsed = ser.apply(parse_value)
+
+    logger.debug(f'List "{ser.name}" parsed as list')
+
+    return parsed
 
 class Oris:
     """Python client for Oris
@@ -127,6 +157,7 @@ class Oris:
         col_number_idx = []
         col_bool_idx = []
         col_formule_idx = []
+        col_list_idx = []
 
         for champ in params:
             col_name = champ.get('name').lower().replace(" ", "_").replace("'", "")
@@ -139,12 +170,15 @@ class Oris:
                 col_number_idx.append(col_name)
             if champ.get("type") == "formule":
                 col_formule_idx.append(col_name)
+            if champ.get("type") == "liste" or champ.get("type") == "champ":
+                col_list_idx.append(col_name)
 
         logger.debug(f'column indexes: {col_idx}')
         logger.debug(f'date columns: {col_date_idx}')
         logger.debug(f'number columns: {col_number_idx}')
         logger.debug(f'boolean columns: {col_bool_idx}')
         logger.debug(f'formule columns: {col_formule_idx}')
+        logger.debug(f'list columns: {col_list_idx}')
 
         data = self.get_db(db, db_path, archives)
         df = pd.DataFrame.from_records(data, index="id")
@@ -154,4 +188,5 @@ class Oris:
         df[col_bool_idx] = df[col_bool_idx].apply(pd.to_numeric, errors="coerce").astype(bool)
         df[col_number_idx] = df[col_number_idx].apply(safe_to_numeric)
         df[col_formule_idx] = df[col_formule_idx].apply(infer_formule_type)
+        df[col_list_idx] = df[col_list_idx].apply(infer_list_type)
         return df
