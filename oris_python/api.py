@@ -8,7 +8,7 @@ from flask import Flask, jsonify, request
 from sqlalchemy import create_engine, inspect, text, bindparam
 from sqlalchemy.exc import SQLAlchemyError
 
-import create_db
+from update_table import update_tables
 
 warnings.simplefilter("ignore")
 
@@ -34,10 +34,8 @@ DATABASE_URL = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_por
 
 engine = create_engine(DATABASE_URL)
 
-
 def get_connection():
     return engine.connect()
-
 
 @app.route("/", methods=["GET"])
 def home():
@@ -47,7 +45,7 @@ def home():
             "GET /health",
             "GET /tables",
             "GET /table/<table_name>",
-            "GET /agent/missionpropositions/<agent_id>?limit=<limit>&offset=<offset>&mission_type_ids=<mission_type_ids>&outfit_ids=<outfit_ids>&zone=<zone>&hourly_rate=<hourly_rate>"
+            "GET /agent/missionpropositions/<agent_id>?limit=<limit>&offset=<offset>&mission_type_ids=<mission_type_ids>&outfit_ids=<outfit_ids>&distance=<distance>&hourly_rate=<hourly_rate>"
         ]
     })
 
@@ -137,17 +135,33 @@ def extraire_ids(valeur):
 
 @app.route("/agent/missionpropositions/<agent_id>", methods=["GET"])
 def get_agent_mission_propositions(agent_id):
+
+    defult_path = "doc_reflex/1_data/bd/"
+
+    update_tables([
+        ("agents", f"{defult_path}agents_gestion.ini", "no"),
+        ("agent_agreement", f"{defult_path}agent_agreement_gestion.ini", "no"),
+        ("agent_mission", f"{defult_path}agent_mission_gestion.ini", "no"),
+        ("agreement", f"{defult_path}agreement_gestion.ini", "no"),
+        ("missions", f"{defult_path}missions_gestion.ini", "no"),
+        ("mission_service", f"{defult_path}mission_service_gestion.ini", "no"),
+        ("mission_type", f"{defult_path}mission_type_gestion.ini", "no"),
+        ("outfits", f"{defult_path}outfits_gestion.ini", "no"),
+        ("sub_missions", f"{defult_path}sub_missions_gestion.ini", "no"),
+        ("unavailability", f"{defult_path}unavailability_gestion.ini", "no")
+    ])
+
     limit = request.args.get("limit", default=10, type=int)
     offset = request.args.get("offset", default=0, type=int)
 
     mission_type_ids = request.args.getlist("mission_type_ids", type=int)
     outfit_ids = request.args.getlist("outfit_ids", type=int)
 
-    zone = request.args.get("zone", default=3, type=int)
+    distance = request.args.get("distance", default=3, type=int)
     hourly_rate = request.args.get("hourly_rate", default=None, type=float)
 
-    if zone not in [1, 2, 3]:
-        return jsonify({"error": "zone must be 1, 2 or 3"}), 400
+    if distance not in [1, 2, 3]:
+        return jsonify({"error": "distance must be 1, 2 or 3"}), 400
 
     has_mission_type_filter = len(mission_type_ids) > 0
     has_outfit_filter = len(outfit_ids) > 0
@@ -179,19 +193,24 @@ def get_agent_mission_propositions(agent_id):
 
             agent_data = dict(agent._mapping)
 
-            if zone == 1:
-                zone_condition = "m.city_code = :agent_city_code"
-            elif zone == 2:
-                zone_condition = "m.area_code = :agent_area_code"
+            if distance == 1:
+                distance_condition = "mi.city_code = :agent_city_code"
+            elif distance == 2:
+                distance_condition = "mi.area_code = :agent_area_code"
             else:
-                zone_condition = "m.country_code = :agent_country_code"
+                distance_condition = "mi.country_code = :agent_country_code"
 
             requete = text(f"""
-                SELECT DISTINCT m.*
-                FROM os_sub_mission m
-                JOIN os_agent_agreement aa ON aa.agent_id = :agent_id AND aa.agreements_ids IN (
-                    SELECT m.mission_type_ids
-                )
+                SELECT DISTINCT 
+                m.*,
+                mi.city_code AS mission_city_code,
+                mi.area_code AS mission_area_code,
+                mi.country_code AS mission_country_code
+                FROM os_sub_missions m
+                JOIN os_agent_agreement aa ON aa.agent_id = :agent_id 
+                JOIN os_missions mi ON mi.id = m.mission_id
+                WHERE {distance_condition}
+                AND (aa.agreements_ids::int[])[1] = ANY(m.agent_type::int[])
                 LIMIT :limit OFFSET :offset
             """)
 
@@ -215,7 +234,7 @@ def get_agent_mission_propositions(agent_id):
             "filters": {
                 "mission_type_ids": mission_type_ids if has_mission_type_filter else [],
                 "outfit_ids": outfit_ids if has_outfit_filter else [],
-                "zone": zone,
+                "distance": distance,
                 "hourly_rate": hourly_rate,
                 "limit": limit,
                 "offset": offset

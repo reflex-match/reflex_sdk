@@ -92,6 +92,15 @@ def infer_list_type(ser: pd.Series):
 
     return parsed
 
+def save_last_updated(db: str, last_updated):
+    with open("last_updated.json", "r") as f:
+        data = json.load(f)
+
+    data[db] = last_updated
+
+    with open("last_updated.json", "w") as f:
+        json.dump(data, f, indent=4)
+
 class Oris:
     """Python client for Oris
     """
@@ -111,6 +120,23 @@ class Oris:
             logger.warning(f'Unable to connect {user} to Oris')
         else:
             logger.info(f'{user} connected to Oris')
+
+    def get_last_update(self, db: str, db_path: str):
+        headers = {
+            "User-Agent": "Python",
+            "Accept": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Oris-Basepath": f"{self._url}/{self._id}/{db_path}",
+            "Referer": f"{self._url}/{self._id}"
+        }
+
+        response = requests.get(f"{self._url}/{self._id}/rest/system_database/date?base={db_path}", headers=headers)
+        if response.status_code == 200:
+            logger.info(f'{db} last update received')
+        else:
+            logger.error(f'Unable to get {db} last update at {db_path}')
+            
+        return response.json().get("date")
 
     def get_db(self, db: str, db_path: str, archives="no"):
         headers = {
@@ -151,6 +177,10 @@ class Oris:
     
     def get_db_as_dataframe(self, db: str, db_path: str, archives="no"):
         params = self.get_db_params(db, db_path)
+
+        date = self.get_last_update(db, db_path)
+
+        save_last_updated(db, date)
 
         col_idx = {}
         col_date_idx = []

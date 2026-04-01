@@ -9,6 +9,8 @@ warnings.simplefilter("ignore")
 
 logger = logging.getLogger(__name__)
 
+
+
 def main():
     logging.basicConfig(
         filename='',
