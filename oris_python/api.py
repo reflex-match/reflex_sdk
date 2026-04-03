@@ -200,6 +200,11 @@ def get_agent_mission_propositions(agent_id):
             else:
                 distance_condition = "mi.country_code = :agent_country_code"
 
+            mission_type_condition = ""
+
+            if mission_type_ids and mission_type_ids != [-1]:
+                mission_type_condition = "AND m.mission_type_id = ANY(:mission_type_ids)"
+
             requete = text(f"""
                 SELECT DISTINCT 
                 m.*,
@@ -211,6 +216,7 @@ def get_agent_mission_propositions(agent_id):
                 JOIN os_missions mi ON mi.id = m.mission_id
                 WHERE {distance_condition}
                 AND (aa.agreements_ids::int[])[1] = ANY(m.agent_type::int[])
+                {mission_type_condition}
                 LIMIT :limit OFFSET :offset
             """)
 
