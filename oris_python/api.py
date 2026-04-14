@@ -217,7 +217,13 @@ def get_agent_mission_propositions(agent_id):
                     m.*,
                     mi.city_code AS mission_city_code,
                     mi.area_code AS mission_area_code,
-                    mi.country_code AS mission_country_code
+                    mi.country_code AS mission_country_code,
+                    CASE
+                        WHEN mi.city_code = :agent_city_code THEN 1
+                        WHEN mi.area_code = :agent_area_code THEN 2
+                        WHEN mi.country_code = :agent_country_code THEN 3
+                        ELSE 4
+                    END AS distance_order
                 FROM os_sub_missions m
                 JOIN os_agent_agreement aa ON aa.agent_id = :agent_id
                 JOIN os_missions mi ON mi.id = m.mission_id
@@ -226,6 +232,7 @@ def get_agent_mission_propositions(agent_id):
                 {mission_type_condition}
                 {outfit_condition}
                 {hourly_rate_condition}
+                ORDER BY distance_order
                 LIMIT :limit OFFSET :offset
             """)
 
