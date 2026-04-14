@@ -201,22 +201,31 @@ def get_agent_mission_propositions(agent_id):
                 distance_condition = "mi.country_code = :agent_country_code"
 
             mission_type_condition = ""
-
-            if mission_type_ids and mission_type_ids != [-1]:
+            if has_mission_type_filter:
                 mission_type_condition = "AND m.mission_type_id = ANY(:mission_type_ids)"
+
+            outfit_condition = ""
+            if has_outfit_filter:
+                outfit_condition = "AND m.outfits::int[] && :outfit_ids"
+
+            hourly_rate_condition = ""
+            if has_hourly_rate_filter:
+                hourly_rate_condition = "AND m.hourly_rate >= :hourly_rate"
 
             requete = text(f"""
                 SELECT DISTINCT 
-                m.*,
-                mi.city_code AS mission_city_code,
-                mi.area_code AS mission_area_code,
-                mi.country_code AS mission_country_code
+                    m.*,
+                    mi.city_code AS mission_city_code,
+                    mi.area_code AS mission_area_code,
+                    mi.country_code AS mission_country_code
                 FROM os_sub_missions m
-                JOIN os_agent_agreement aa ON aa.agent_id = :agent_id 
+                JOIN os_agent_agreement aa ON aa.agent_id = :agent_id
                 JOIN os_missions mi ON mi.id = m.mission_id
                 WHERE {distance_condition}
                 AND (aa.agreements_ids::int[])[1] = ANY(m.agent_type::int[])
                 {mission_type_condition}
+                {outfit_condition}
+                {hourly_rate_condition}
                 LIMIT :limit OFFSET :offset
             """)
 
@@ -227,13 +236,13 @@ def get_agent_mission_propositions(agent_id):
                 "agent_country_code": agent_data.get("country_code"),
                 "mission_type_ids": mission_type_ids,
                 "outfit_ids": outfit_ids,
+                "hourly_rate": hourly_rate,
                 "limit": limit,
                 "offset": offset
-            }   
+            }
+
             result = connection.execute(requete, params)
             rows = [dict(row._mapping) for row in result]
-                
-
 
         return jsonify({
             "agent_id": agent_id,
