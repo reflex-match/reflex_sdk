@@ -5,22 +5,25 @@ import warnings
 
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
-from sqlalchemy import create_engine, inspect, text, bindparam
+from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.exc import SQLAlchemyError
+from waitress import serve
 
 from update_table import update_tables
 
 warnings.simplefilter("ignore")
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
 logging.basicConfig(
-    filename="",
+    filename=os.path.join(base_dir, "api.log"),
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
 
 logger = logging.getLogger(__name__)
 
-load_dotenv()
+load_dotenv(os.path.join(base_dir, ".env"))
 
 app = Flask(__name__)
 
@@ -34,8 +37,10 @@ DATABASE_URL = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_por
 
 engine = create_engine(DATABASE_URL)
 
+
 def get_connection():
     return engine.connect()
+
 
 @app.route("/", methods=["GET"])
 def home():
@@ -55,12 +60,15 @@ def health():
     try:
         with get_connection() as connection:
             connection.execute(text("SELECT 1"))
+
         return jsonify({
             "status": "ok",
             "database": "connected"
         }), 200
+
     except Exception as e:
         logger.error(f"Health check failed: {e}")
+
         return jsonify({
             "status": "error",
             "database": "disconnected",
@@ -73,11 +81,14 @@ def get_tables():
     try:
         inspector = inspect(engine)
         tables = inspector.get_table_names()
+
         return jsonify({
             "tables": tables
         }), 200
+
     except Exception as e:
         logger.error(f"Unable to list tables: {e}")
+
         return jsonify({
             "error": str(e)
         }), 500
@@ -104,6 +115,7 @@ def get_table_content(table_name):
                 "limit": limit,
                 "offset": offset
             })
+
             rows = [dict(row._mapping) for row in result]
 
         return jsonify({
@@ -116,9 +128,11 @@ def get_table_content(table_name):
 
     except SQLAlchemyError as e:
         logger.error(f"Error while reading table {table_name}: {e}")
+
         return jsonify({
             "error": str(e)
         }), 500
+
 
 def extraire_ids(valeur):
     if valeur is None:
@@ -128,14 +142,15 @@ def extraire_ids(valeur):
         return {int(v) for v in valeur if str(v).isdigit()}
 
     valeur = str(valeur).strip()
+
     if not valeur:
         return set()
 
     return {int(v) for v in re.findall(r"\d+", valeur)}
 
+
 @app.route("/agent/missionpropositions/<agent_id>", methods=["GET"])
 def get_agent_mission_propositions(agent_id):
-
     defult_path = "doc_reflex/1_data/bd/"
 
     update_tables([
@@ -190,7 +205,9 @@ def get_agent_mission_propositions(agent_id):
             agent = result_agent.fetchone()
 
             if not agent:
-                return jsonify({"error": f"Agent {agent_id} not found"}), 404
+                return jsonify({
+                    "error": f"Agent {agent_id} not found"
+                }), 404
 
             agent_data = dict(agent._mapping)
 
@@ -220,6 +237,7 @@ def get_agent_mission_propositions(agent_id):
 
                     ag.company_name AS agency_company_name,
                     ag.profile_picture AS agency_profile_picture,
+                    ag.rating AS agency_rating,
 
                     ARRAY(
                         SELECT agr.name
@@ -299,6 +317,7 @@ def get_agent_mission_propositions(agent_id):
 
     except SQLAlchemyError as e:
         logger.error(f"Error while reading mission propositions for agent {agent_id}: {e}")
+
         return jsonify({
             "error": str(e)
         }), 500
@@ -307,12 +326,12 @@ def get_agent_mission_propositions(agent_id):
 if __name__ == "__main__":
     app_host = os.getenv("APP_HOST", "0.0.0.0")
     app_port = int(os.getenv("APP_PORT", 5000))
-    app_debug = os.getenv("APP_DEBUG", "True").lower() == "true"
 
-    app.run(
-        host=app_host, 
-        port=app_port, 
-        debug=app_debug,
-        threaded=True,
-        use_reloader=False
+    logger.info(f"Starting Reflex API with Waitress on {app_host}:{app_port}")
+
+    serve(
+        app,
+        host=app_host,
+        port=app_port,
+        threads=8
     )

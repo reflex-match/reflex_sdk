@@ -1,0 +1,90 @@
+2026-04-28 11:07:05,399 [INFO] waitress: Serving on http://127.0.0.1:8080
+2026-04-28 11:07:10,908 [INFO] update_table: Connection to PostgreSQL established successfully!
+2026-04-28 11:07:11,120 [INFO] oris: test connected to Oris
+2026-04-28 11:07:11,317 [INFO] oris: agents last update received
+2026-04-28 11:07:11,319 [INFO] update_table: Updating table agents
+2026-04-28 11:07:11,515 [ERROR] oris: Unable to get agents parameters at /Users/swannwilliame/Desktop/Osmose/reflex/sdk/oris_python/doc_reflex/1_data/bd/agents_gestion.ini
+2026-04-28 11:07:11,516 [ERROR] api: Exception on /agent/missionpropositions/vdRkiku5ciZh3rnzPMrNGkSpc7G3 [GET]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/requests/models.py", line 976, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/swannwilliame/Desktop/Osmose/reflex/sdk/oris_python/api.py", line 156, in get_agent_mission_propositions
+    update_tables([
+  File "/Users/swannwilliame/Desktop/Osmose/reflex/sdk/oris_python/update_table.py", line 69, in update_tables
+    df = client.get_db_as_dataframe(bdd[0], bdd[1], bdd[2])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/swannwilliame/Desktop/Osmose/reflex/sdk/oris_python/oris.py", line 183, in get_db_as_dataframe
+    params = self.get_db_params(db, db_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/swannwilliame/Desktop/Osmose/reflex/sdk/oris_python/oris.py", line 179, in get_db_params
+    return response.json().get("champs")
+           ^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/requests/models.py", line 980, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-04-28 11:07:43,337 [INFO] __main__: Starting Reflex API with Waitress on 0.0.0.0:63747
+2026-04-28 11:07:43,338 [INFO] waitress: Serving on http://0.0.0.0:63747
+2026-04-28 11:09:51,682 [INFO] __main__: Starting Reflex API with Waitress on 0.0.0.0:63747
+2026-04-28 11:09:51,683 [INFO] waitress: Serving on http://0.0.0.0:63747
+2026-04-28 11:10:00,746 [INFO] update_table: Connection to PostgreSQL established successfully!
+2026-04-28 11:10:00,951 [INFO] oris: test connected to Oris
+2026-04-28 11:10:01,146 [INFO] oris: agents last update received
+2026-04-28 11:10:01,350 [INFO] oris: agent_agreement last update received
+2026-04-28 11:10:01,547 [INFO] oris: agent_mission last update received
+2026-04-28 11:10:01,742 [INFO] oris: agreement last update received
+2026-04-28 11:10:01,744 [INFO] update_table: Updating table agreement
+2026-04-28 11:10:01,953 [INFO] oris: agreement parameters received
+2026-04-28 11:10:02,149 [INFO] oris: agreement last update received
+2026-04-28 11:10:02,384 [INFO] oris: agreement received
+2026-04-28 11:10:02,856 [INFO] oris: missions last update received
+2026-04-28 11:10:03,059 [INFO] oris: mission_service last update received
+2026-04-28 11:10:03,263 [INFO] oris: mission_type last update received
+2026-04-28 11:10:03,504 [INFO] oris: outfits last update received
+2026-04-28 11:10:03,506 [INFO] update_table: Updating table outfits
+2026-04-28 11:10:03,719 [INFO] oris: outfits parameters received
+2026-04-28 11:10:03,914 [INFO] oris: outfits last update received
+2026-04-28 11:10:04,115 [INFO] oris: outfits received
+2026-04-28 11:10:04,373 [INFO] oris: sub_missions last update received
+2026-04-28 11:10:04,580 [INFO] oris: unavailability last update received
+2026-04-28 11:10:04,777 [INFO] oris: agency last update received
+2026-04-28 11:10:04,778 [INFO] update_table: Process completed successfully.
+2026-04-28 14:40:14,663 [INFO] update_table: Connection to PostgreSQL established successfully!
+2026-04-28 14:40:15,135 [INFO] oris: test connected to Oris
+2026-04-28 14:40:15,326 [INFO] oris: agents last update received
+2026-04-28 14:40:15,534 [INFO] oris: agent_agreement last update received
+2026-04-28 14:40:15,744 [INFO] oris: agent_mission last update received
+2026-04-28 14:40:15,941 [INFO] oris: agreement last update received
+2026-04-28 14:40:16,134 [INFO] oris: missions last update received
+2026-04-28 14:40:16,337 [INFO] oris: mission_service last update received
+2026-04-28 14:40:16,539 [INFO] oris: mission_type last update received
+2026-04-28 14:40:16,737 [INFO] oris: outfits last update received
+2026-04-28 14:40:16,929 [INFO] oris: sub_missions last update received
+2026-04-28 14:40:17,118 [INFO] oris: unavailability last update received
+2026-04-28 14:40:17,312 [INFO] oris: agency last update received
+2026-04-28 14:40:17,313 [INFO] update_table: Process completed successfully.
