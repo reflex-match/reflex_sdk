@@ -148,7 +148,8 @@ def get_agent_mission_propositions(agent_id):
         ("mission_type", f"{defult_path}mission_type_gestion.ini", "no"),
         ("outfits", f"{defult_path}outfits_gestion.ini", "no"),
         ("sub_missions", f"{defult_path}sub_missions_gestion.ini", "no"),
-        ("unavailability", f"{defult_path}unavailability_gestion.ini", "no")
+        ("unavailability", f"{defult_path}unavailability_gestion.ini", "no"),
+        ("agency", f"{defult_path}agency_gestion.ini", "no"),
     ])
 
     limit = request.args.get("limit", default=10, type=int)
@@ -215,23 +216,54 @@ def get_agent_mission_propositions(agent_id):
             requete = text(f"""
                 SELECT DISTINCT 
                     m.*,
-                    mi.city_code AS mission_city_code,
-                    mi.area_code AS mission_area_code,
-                    mi.country_code AS mission_country_code,
+                    mi.*,
+
+                    ag.company_name AS agency_company_name,
+                    ag.profile_picture AS agency_profile_picture,
+
+                    ARRAY(
+                        SELECT agr.name
+                        FROM os_agreement agr
+                        WHERE agr.id = ANY(m.agent_type::int[])
+                    ) AS agent_type_names,
+
+                    ms.name AS mission_service_name,
+
+                    mt.name AS mission_type_name,
+
+                    ARRAY(
+                        SELECT o.name
+                        FROM os_outfits o
+                        WHERE o.id = ANY(m.outfits::int[])
+                    ) AS outfits_names,
+
                     CASE
                         WHEN mi.city_code = :agent_city_code THEN 1
                         WHEN mi.area_code = :agent_area_code THEN 2
                         WHEN mi.country_code = :agent_country_code THEN 3
                         ELSE 4
                     END AS distance_order
+
                 FROM os_sub_missions m
                 JOIN os_agent_agreement aa ON aa.agent_id = :agent_id
                 JOIN os_missions mi ON mi.id = m.mission_id
+                JOIN os_agency ag ON ag.id = mi.agency_id
+
+                LEFT JOIN os_mission_service ms ON ms.id = m.mission_service_id
+                LEFT JOIN os_mission_type mt ON mt.id = m.mission_type_id
+
                 WHERE {distance_condition}
                 AND (aa.agreements_ids::int[])[1] = ANY(m.agent_type::int[])
+                AND NOT EXISTS (
+                    SELECT 1
+                    FROM os_agent_mission am
+                    WHERE am.agent_id = :agent_id
+                    AND am.sub_mission_id = m.id
+                )
                 {mission_type_condition}
                 {outfit_condition}
                 {hourly_rate_condition}
+
                 ORDER BY distance_order
                 LIMIT :limit OFFSET :offset
             """)
@@ -277,4 +309,10 @@ if __name__ == "__main__":
     app_port = int(os.getenv("APP_PORT", 5000))
     app_debug = os.getenv("APP_DEBUG", "True").lower() == "true"
 
-    app.run(host=app_host, port=app_port, debug=app_debug)
+    app.run(
+        host=app_host, 
+        port=app_port, 
+        debug=app_debug,
+        threaded=True,
+        use_reloader=False
+    )

@@ -1,0 +1,3 @@
+fsdk_request(
+    http://127.0.0.1:63747/agent/missionpropositions/'id'
+)

@@ -5,6 +5,7 @@ import pandas as pd
 import psycopg2
 from psycopg2 import sql
 import json
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -93,14 +94,17 @@ def infer_list_type(ser: pd.Series):
     return parsed
 
 def save_last_updated(db: str, last_updated):
-    with open("last_updated.json", "r") as f:
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, "last_updated.json")
+
+    with open(file_path, "r") as f:
         data = json.load(f)
 
     data[db] = last_updated
 
-    with open("last_updated.json", "w") as f:
+    with open(file_path, "w") as f:
         json.dump(data, f, indent=4)
-
+        
 class Oris:
     """Python client for Oris
     """
