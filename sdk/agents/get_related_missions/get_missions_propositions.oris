@@ -1,3 +1,8 @@
 fsdk_request(
-    http://127.0.0.1:63747/agent/missionpropositions/'id'
+    =ftxt(http://127.0.0.1:63747/agent/missionpropositions/'id'?limit=)$fpar("limit")&
+    ftxt(&offset=)$fpar("offset")&
+    ftxt(&distance=)$fpar("distance")&
+    ftxt(&hourly_rate=)$fpar("hourly_rate")&
+    ftxt(&)$fparmulti(mission_type_ids="mission_type_ids")&
+    ftxt(&)$fparmulti(outfit_ids="outfit_ids")
 )
